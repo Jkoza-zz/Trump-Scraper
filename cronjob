@@ -1,0 +1,14 @@
+*/2 * * * * /home/ec2-user/social_scrapers/scrape.sh facebook >logs/facebook-scraper.log 2>&1
+#*/2 * * * * /home/ec2-user/social_scrapers/scrape.sh flipboard
+#*/2 * * * * /home/ec2-user/social_scrapers/scrape.sh instagram
+#*/2 * * * * /home/ec2-user/social_scrapers/scrape.sh linkedin
+*/2 * * * * /home/ec2-user/social_scrapers/scrape.sh twitter >logs/twitter-scraper.log 2>&1
+#*/2 * * * * /home/ec2-user/social_scrapers/scrape.sh vine
+#*/2 * * * * /home/ec2-user/social_scrapers/scrape.sh youtube
+#00 11 * * 1-5 /home/ec2-user/social_scrapers/upload/upload_auto.sh 1
+#50 10 * * 1 /home/ec2-user/social_scrapers/upload/upload_auto.sh 2 
+#40 10 * * 1 /home/ec2-user/social_scrapers/upload/upload_auto.sh 3
+#20 11 * * 1-5 python /home/ec2-user/social_scrapers/monitor/check_table.py
+
+# cleanup crontab mails weekly
+0 0 * * 1 sudo rm /var/mail/ec2-user
