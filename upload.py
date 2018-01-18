@@ -10,11 +10,9 @@ import dateutil.parser as parser
 
 def format_data(data):
 	return ({
-		'Post Time' 	: datetime.datetime.fromtimestamp(float(data[0]), None), 
-		'Tweet URL' 	: data[1],
-		'Tweet' 		: data[2], 
-		'Retweets'		: data[3], 
-		'Favourites'	: data[4]
+		'post_time' 	: datetime.datetime.fromtimestamp(float(data[0]), None), 
+		'tweet' 		: data[1], 
+		'post_id'		: data[2]
 	})
 
 client = MongoClient('localhost:27017')

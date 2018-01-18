@@ -18,7 +18,7 @@ OAUTH_TOKEN_SECRET = "EkPs8IZoo5Qnt9tOjUcXSTIGNXE86QQ62G03ksmjD8VGh"
 output_file = open('output.csv', 'wb')
 csv_writer = csv.writer(output_file, quoting=csv.QUOTE_ALL)
 
-csv_writer.writerow(['Post Time', 'Tweet URL', 'Tweet', 'Retweets', 'Favourites'])
+csv_writer.writerow(['Post Time', 'Text', 'ID'])
 
 twitter = Twython(APP_KEY, APP_SECRET)
 auth = twitter.get_authentication_tokens()  
@@ -28,5 +28,5 @@ twitter.verify_credentials()
 timeline = twitter.get_user_timeline(screen_name='realDonaldTrump', count=fetch_count)
 
 for tweet in timeline:
-    csv_writer.writerow([int(time.mktime(dateutil.parser.parse(tweet['created_at'].encode('utf-8')).timetuple())), "https://twitter.com/statuses/" + tweet['id_str'].encode('utf-8'), 
-                        tweet['text'].encode('utf-8'), tweet['retweet_count'], tweet['favorite_count']])
+    csv_writer.writerow([int(time.mktime(dateutil.parser.parse(tweet['created_at'].encode('utf-8')).timetuple())), 
+                        tweet['text'].encode('utf-8'), tweet['id_str'].encode('utf-8')])
