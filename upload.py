@@ -10,13 +10,14 @@ import dateutil.parser as parser
 
 def format_data(data):
 	return ({
-		'post_time' 	: datetime.datetime.fromtimestamp(float(data[0]), None), 
-		'tweet' 		: data[1], 
-		'post_id'		: data[2]
+		'created_at' 	: datetime.datetime.fromtimestamp(float(data[0]), None), 
+		'text' 			: data[1], 
+		'id_str'		: data[2]
 	})
 
-client = MongoClient('localhost:27017')
-database = client['tweets']['tweets']
+client = MongoClient('ds119064.mlab.com:19064')
+client['trump-tweets'].authenticate('jkoza', 'jkoza')
+database = client['trump-tweets']['tweets']
 
 file = open('output.csv')
 rows = csv.reader(file,delimiter=',')
@@ -27,6 +28,6 @@ next(rows)
 for i in rows:
 	data = format_data(i)
 	if (data):
-		database.insert_one(format_data(i)).inserted_id
-
+		if(not database.find_one({'id_str' : data['id_str']})):
+			database.insert_one(format_data(i)).inserted_id
 file.close()
