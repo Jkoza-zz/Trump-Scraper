@@ -1,4 +1,4 @@
-*/5 * * * * /home/ec2-user/trump-scraper/scrape.sh >logs/cronjob.log 2>&1
+*/5 * * * * /home/ec2-user/Trump-Scraper/scrape.sh >logs/cronjob.log 2>&1
 
 # cleanup crontab mails weekly
 0 0 * * 1 sudo rm /var/mail/ec2-user
